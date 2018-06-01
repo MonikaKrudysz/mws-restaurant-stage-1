@@ -153,6 +153,21 @@ class DBHelper {
     return (`/img/${restaurant.photograph}`);
   }
 
+  static imageSizesForRestaurant(restaurant) {
+    return '(max-width: 767px) 100vw, (max-width: 1199px) 50vw, (min-width: 1200px) 33.3333vw';
+  }
+
+  static imageSrcSetForRestaurant(restaurant) {
+    var sizes = [320, 480, 600, 760, 800];
+    var srcset = [];
+
+    sizes.forEach(function (size) {
+      srcset.push([`responsive_images/${restaurant.id}-${size}.jpg ${size}w`]);
+    });
+
+    return scrset.join(',');
+  }
+
   /**
    * Map marker for a restaurant.
    */
