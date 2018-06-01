@@ -5,18 +5,6 @@ var map;
 var markers = [];
 
 /**
- * Contains image widths.
- *
- * @type {[*]}
- */
-const imageWidths = [
-    {width: '320w', imgTitle: '320w'},
-    {width: '480w', imgTitle: '480w'},
-    {width: '560w', imgTitle: '560w'},
-    {width: '800w', imgTitle: '800w'},
-];
-
-/**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -153,9 +141,9 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  image.srcset = DBHelper.getSrcSet(restaurant.id, imageWidths);
-  image.sizes = "(max-width: 767px) 100vw, (max-width: 1199px) 50vw, (min-width: 1200px) 33vw";
-  image.alt = 'Photo of restaurant ' + restaurant.name;
+  image.sizes = DBHelper.imageSizesForRestaurant(restaurant);
+  image.srcset = DBHelper.imageSrcSetForRestaurant(restaurant);
+  image.alt = `Photo of ${restaurant.name}`;
 
   li.append(image);
 

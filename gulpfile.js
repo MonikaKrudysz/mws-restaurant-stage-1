@@ -1,6 +1,6 @@
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
 var responsive = require('gulp-responsive');
+var browserSync = require('browser-sync').create();
 
 gulp.task('watch', function () {
     browserSync.init({
@@ -20,33 +20,31 @@ gulp.task('images', function () {
             '*.jpg': [
                 {
                     width: 320,
-                    rename: {suffix: '-320w'}
-                },
-                {
-                    width: 320,
-                    rename: {suffix: '-320w'}
+                    rename: {suffix: '-320'}
                 },
                 {
                     width: 480,
-                    rename: {suffix: '-480w'}
+                    rename: {suffix: '-480'}
                 },
                 {
-                    width: 560,
-                    rename: {suffix: '-560w'}
+                    width: 600,
+                    rename: {suffix: '-600'}
+                },
+                {
+                    width: 760,
+                    rename: {suffix: '-760'}
                 },
                 {
                     width: 800,
-                    rename: {suffix: '-800w'}
-                },
-
-            ]
+                    rename: {suffix: '-800'}
+                }
+            ],
         }, {
-            quality: 80,
+            quality: 70,
             progressive: true,
-            withMetadata: false
-        })
-        )
-        .pipe(gulp.dest('images'));
+            withMetadata: false,
+        }))
+        .pipe(gulp.dest('responsive_images'))
 });
 
 gulp.task('default', []);

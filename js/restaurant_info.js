@@ -49,13 +49,6 @@ fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
-  const imageWidths = [
-      {width: '320w', imgTitle: '320w'},
-      {width: '480w', imgTitle: '480w'},
-      {width: '560w', imgTitle: '560w'},
-      {width: '800w', imgTitle: '800w'},
-  ];
-
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
 
@@ -65,9 +58,9 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  image.srcset = DBHelper.getSrcSet(restaurant.id, imageWidths);
-  image.sizes = "(max-width: 767px) 100vw, (min-width: 768px) 50vw";
-  image.alt = 'Photo of restaurant ' + restaurant.name;
+  image.alt = `Photo of ${restaurant.name}`;
+  image.sizes = '(max-width: 767px) 100vw, (min-width: 768px) 50vw';
+  image.srcset = DBHelper.imageSrcSetForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
